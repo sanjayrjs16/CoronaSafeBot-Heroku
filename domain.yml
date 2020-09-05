@@ -1,0 +1,291 @@
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - thank_bot
+  - bot_challenge
+  - ask_return_main_menu
+  - ask_return_coronasafe_menu
+  - ask_kerala_total
+  - ask_district_wise
+  - inform_district
+  - ask_hotspots_districtwise
+  - ask_about_coronasafenetwork
+  - ask_about_kerala_community_response_network
+  - ask_about_care
+  - ask_about_dashboards
+  - ask_about_delivery_networks
+  - ask_take_quiz
+  - ask_about_Edu_Courses
+  - ask_contact_us
+  - out_of_scope
+
+entities:
+  - district
+
+slots:
+  district:
+    type: unfeaturized
+
+responses:
+  utter_greet:
+    - text: "Hey! CoronaSafeNetwork bot here. I can provide Kerala's latest Covid19 reports. I am part of CoronaSafe-Network- Kerala.
+            "
+
+  utter_iamabot:
+    - text: "I am a bot.I can provide Kerala's latest Covid19 reports. I am part of CoronaSafe Network Kerala."
+
+  utter_bot_function:
+    - text: Select an option below to get the latest information.
+      channel: "telegram"
+      custom:
+      button_type: vertical
+      buttons:
+        - title: Case Reports ( All Kerala )
+          payload: total
+        - title: Case Reports ( District-wise )
+          payload: district
+        - title: Hotspots (District-wise)
+          payload: hotspot
+        - title: Kerala's Community response Network
+          payload: Community response
+        - title: About CoronaSafeNetwork Kerala
+          payload: CoronaSafeNetwork
+    - text: Swipe Left/Right to select an option for the latest information.
+      channel: "facebook"
+      custom:
+      quick_replies:
+      - content_type: text
+        payload: total
+        title: Cases(All Kerala)
+      - content_type: text
+        payload: district
+        title: Cases (District)
+      - content_type: text
+        payload: hotspot
+        title: Hotspots (Districts)
+      - content_type: text
+        payload: Community response
+        title: Kerala's BattlePlan
+      - content_type: text
+        payload: CoronaSafeNetwork
+        title: About CoronaSafe
+
+
+  utter_about_coronasafe:
+    - text: "CoronaSafe Network is an open-source public utility designed by a multi-disciplinary team of innovators and volunteers who are working on a model to support Government efforts with full understanding and support of Government of Kerala\n
+           \nVisit https://coronasafe.network/ to learn more \n
+           \nOur youtube channel: \n
+           https://videos.coronasafe.network/ \n
+          \nHere is a Quick overview about us:\n
+            https://youtu.be/9u_C74baBro?t=4
+           "
+
+  utter_about_kerala_community_response_network:
+    - text: "This is part of free courses offered by CoronaSafe at \nhttps://knowledge.coronasafe.network/
+              \nThe below video is an intro to Kerala's community response network.\n
+              \n https://youtu.be/3S7ZR00xpuU"
+
+  utter_about_care:
+    - text: "Care is a capacity planning and analysis tool for managing capacity, patients and samples in front-line treatment centers, corona care center, and hospitals\n
+           \n
+            Check out Care here
+            \nhttps://care.coronasafe.network/ \n
+            \nWatch the video to learn more\n
+             https://youtu.be/9u_C74baBro?t=133 \n
+            "
+  utter_about_dashboards:
+    - text: "CoronaSafe Network's public dashboards: \n
+             \n1.Kerala Map Dashboard: \n
+             https://keralamap.coronasafe.network/ \n
+             \n2. Kerala Covid-19 Map: \n
+             http://hotspots.coronasafe.network/ \n
+             \n3. All India Covid Timeline: \n
+             https://plots.coronasafe.network/ \n
+            \n4.Real time Map based all India covid cases along with test centres: \n
+             https://map.coronasafe.network/
+             \n
+            "
+  utter_about_delivery_networks:
+    - text: "We have the following delivery/logistics networks:\n\n
+            1. Ambulance network : \n
+            Centralised real-time monitoring system which helps in deploying ambulances on one touch.\n\n
+            2. Medicine Delivery network : \n
+            A custom solution made to coordinate efforts in delivering medicines online.\n\n
+            3. Food Delivery network: \n
+            A simple solution to manage community kitchen and coordinate efforts in delivering food online.\n
+            \n https://youtu.be/wHpY_XOSjXk \n\n
+            Orders are picked up by Volunteers at our call centers \n
+            Sign up to volunteer at call centers:\n
+            https://logistics.coronasafe.network/#/volunteer/signup \n\n
+            Sign up for volunteers for Food/medicine delivery or Ambulance, download and register via SuperHero App:\n
+            \nCheck out simple tutorial for registering via SuperHero App: \n
+            https://youtu.be/s8wPn6wASnI \n\n
+            Download SuperHeroApp: \n
+            https://play.google.com/store/apps/details?id=kerala.superhero.app \n
+            "
+
+
+  utter_about_take_quiz:
+    - text: "Take a free quiz to test your knowledge regarding the pandemic and Covid19 virus: \n
+            https://quiz.coronasafe.in/
+            "
+  utter_about_Edu_Courses:
+    - text: "We offer smart online courses, touching upon various subjects like healthcare, disaster management etc. to a wide range of audience from High School students to medical professionals. All of these courses are available without any fees to interested individuals.\n
+             Take courses here: \n
+             https://knowledge.coronasafe.network// \n\n
+             Check out youtube playlist CoronaSafe education compiled by Doctors and health workers: \n
+             https://www.youtube.com/watch?v=HJzp5Q6nTco&list=PLf_Ch_O33Od60v1OVyhEu9O_1MhZMf9sI \n
+             "
+  utter_about_contact_us:
+    - text: "You can reach us via mail : \n
+             info@coronasafe.network \n\n
+             Join our Slack channel: \n
+             https://slack.coronasafe.in/
+             "
+  utter_tools_coronasafe:
+    - text: Here are few of CoronaSafe Network tools  #Making replies telegram specific for button_vertical
+      channel: "telegram"
+      custom:
+      button_type: vertical
+      buttons:
+        - title: Care Platform for Hospitals
+          payload: '/ask_about_care'
+        - title: Logistics/Delivery Networks
+          payload: '/ask_about_delivery_networks'
+        - title: Realtime Public dashboards
+          payload: '/ask_about_dashboards'
+        - title: Take a Quiz
+          payload: '/ask_take_quiz'
+        - title: Education and courses
+          payload: '/ask_about_Edu_Courses'
+        - title: Contact us
+          payload: 'ask_contact_us'
+        - title: <- Back to main Menu
+          payload: '/ask_return_main_menu'
+    - text: Few of CoronaSafe Network tools(Swipe Left/Right)  #Making General replies for other channels
+      channel: "facebook"
+      custom:
+      quick_replies:
+        - content_type: text
+          title: Care Platform
+          payload: '/ask_about_care'
+        - content_type: text
+          title: Logistics Networks
+          payload: '/ask_about_delivery_networks'
+        - content_type: text
+          title: Realtime dashboards
+          payload: '/ask_about_dashboards'
+        - content_type: text
+          title: Take a Quiz
+          payload: '/ask_take_quiz'
+        - content_type: text
+          title: Education & courses
+          payload: '/ask_about_Edu_Courses'
+        - content_type: text
+          title: Contact us
+          payload: 'ask_contact_us'
+        - content_type: text
+          title: <- Back to main Menu
+          payload: '/ask_return_main_menu'
+
+  utter_back_to_coronasafe_menu:
+    - text: Select an option.  #Making General replies for other channels
+      channel: "facebook"
+      custom:
+      quick_replies:
+        - content_type: text
+          title: <- Main Menu
+          payload: '/ask_return_main_menu'
+        - content_type: text
+          title:  About CoronaSafe
+          payload: '/ask_return_coronasafe_menu'
+    - text: Select an option.
+      buttons:
+      - title: <- Back to main Menu
+        payload: '/ask_return_main_menu'
+      - title: "About CoronaSafe"
+        payload: '/ask_return_coronasafe_menu'
+
+
+
+
+  utter_district_select:
+    - text: Select district
+      channel: "telegram"
+      custom:
+      button_type: vertical
+      buttons:
+        - title: Thiruvananthapuram
+          payload: '/inform_district{"district": "Thiruvananthapuram"}'
+        - title: Kollam
+          payload: '/inform_district{"district": "Kollam"}'
+        - title: Alappuzha
+          payload: '/inform_district{"district": "Alappuzha"}'
+        - title: Pathanamthitta
+          payload: '/inform_district{"district": "Pathanamthitta"}'
+        - title: Kottayam
+          payload: '/inform_district{"district": "Kottayam"}'
+        - title: Idukki
+          payload: '/inform_district{"district": "Idukki"}'
+        - title: Ernakulam
+          payload: '/inform_district{"district": "Ernakulam"}'
+        - title: Thrissur
+          payload: '/inform_district{"district": "Thrissur"}'
+        - title: Palakkad
+          payload: '/inform_district{"district": "Palakkad"}'
+        - title: Malappuram
+          payload: '/inform_district{"district": "Malappuram"}'
+        - title: Kozhikode
+          payload: '/inform_district{"district": "Kozhikode"}'
+        - title: Wayanad
+          payload: '/inform_district{"district": "Wayanad"}'
+        - title: Kannur
+          payload: '/inform_district{"district": "Kannur"}'
+        - title: Kasaragod
+          payload: '/inform_district{"district": "Kasaragod"}'
+    - text: Please enter district name.
+
+  utter_welcome:
+    - text: You are welcome. Don't forget to wear a mask, Wash your hands and practice social distancing. Let's fight this together "#CoronaSafe"! :)
+
+  utter_goodbye:
+    - text: Good bye! Don't forget to wear a mask, Wash your hands and practice social distancing. I'll be here if you need me. :)
+
+  utter_default:
+    - text: "I don't know how to answer that :(. Please make sure you entered correctly.
+            \nBut no Worries...click below for things I can help you with :)"
+      buttons:
+        - title: "<- Back to menu"
+          payload: '/ask_return_main_menu'
+
+
+actions:
+  - utter_greet
+  - utter_iamabot
+  - utter_welcome
+  - utter_bot_function
+  - utter_goodbye
+  - utter_about_coronasafe
+  - utter_about_kerala_community_response_network
+  - utter_tools_coronasafe
+  - utter_back_to_coronasafe_menu
+  - utter_about_care
+  - utter_about_dashboards
+  - utter_about_delivery_networks
+  - utter_about_take_quiz
+  - utter_about_Edu_Courses
+  - utter_about_contact_us
+  - utter_district_select #Splitting districts as fb-messenger can only have 10 quick replies
+  - utter_default
+  - action_district_select_button_dispatch
+  - action_kerala_total_cases
+  - action_district_wise_cases
+  - action_hotspots_districtwise
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
