@@ -1,4 +1,4 @@
-FROM rasa/rasa:1.9.6-full
+FROM rasa/rasa:1.10.11-full
 
 MAINTAINER Sanjay R
 
@@ -13,8 +13,6 @@ ADD ./config /app/config/
 ADD ./actions /app/actions/
 ADD ./scripts /app/scripts/
 ADD ./data /app/data/
-ADD ./data/test/lookup_tables/names.txt /app/data/test/lookup_tables
-ADD ./data/test/lookup_tables/countries.txt /app/data/test/lookup_tables
 ADD ./domain.yml /app/
 ADD ./config.yml /app/
 

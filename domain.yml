@@ -13,6 +13,8 @@ intents:
   - ask_district_wise
   - inform_district
   - ask_hotspots_districtwise
+  - ask_about_guides
+  - ask_about_share_bot
   - ask_about_coronasafenetwork
   - ask_about_kerala_community_response_network
   - ask_about_care
@@ -32,7 +34,7 @@ slots:
 
 responses:
   utter_greet:
-    - text: "Hey! CoronaSafeNetwork bot here. I can provide Kerala's latest Covid19 reports. I am part of CoronaSafe-Network- Kerala.
+    - text: "Hey! CoronaSafe bot here. I can provide Kerala's latest Covid19 reports. I am part of CoronaSafe-Network- Kerala.
             "
 
   utter_iamabot:
@@ -44,23 +46,33 @@ responses:
       custom:
       button_type: vertical
       buttons:
-        - title: Case Reports ( All Kerala )
+        - title: Today's summary(All Kerala)
           payload: total
         - title: Case Reports ( District-wise )
           payload: district
         - title: Hotspots (District-wise)
           payload: hotspot
-        - title: Kerala's Community response Network
+        - title: Covid19 guides
+          payload: '/ask_about_guides'
+        - title: Kerala's Battle Plan
           payload: Community response
-        - title: About CoronaSafeNetwork Kerala
-          payload: CoronaSafeNetwork
+        - title: Realtime Public dashboards
+          payload: '/ask_about_dashboards'
+        - title: Take a Quiz
+          payload: '/ask_take_quiz'
+        - title: Lectures and courses
+          payload: '/ask_about_Edu_Courses'
+        - title: About CoronaSafe Kerala
+          payload: 'ask_about_coronasafenetwork'
+        - title: Share me
+          payload: '/ask_about_share_bot'
     - text: Swipe Left/Right to select an option for the latest information.
       channel: "facebook"
       custom:
       quick_replies:
       - content_type: text
         payload: total
-        title: Cases(All Kerala)
+        title: Today's summary
       - content_type: text
         payload: district
         title: Cases (District)
@@ -68,11 +80,26 @@ responses:
         payload: hotspot
         title: Hotspots (Districts)
       - content_type: text
+        payload: '/ask_about_guides'
+        title: Covid19 guides
+      - content_type: text
         payload: Community response
         title: Kerala's BattlePlan
       - content_type: text
+        title: Realtime dashboards
+        payload: '/ask_about_dashboards'
+      - content_type: text
+        title: Take a Quiz
+        payload: '/ask_take_quiz'
+      - content_type: text
+        title: Education & courses
+        payload: '/ask_about_Edu_Courses'
+      - content_type: text
         payload: CoronaSafeNetwork
         title: About CoronaSafe
+      - content-type: text
+        payload: '/ask_about_share_bot'
+        title: Share me
 
 
   utter_about_coronasafe:
@@ -136,7 +163,7 @@ responses:
   utter_about_Edu_Courses:
     - text: "We offer smart online courses, touching upon various subjects like healthcare, disaster management etc. to a wide range of audience from High School students to medical professionals. All of these courses are available without any fees to interested individuals.\n
              Take courses here: \n
-             https://knowledge.coronasafe.network// \n\n
+             https://school.coronasafe.network/ \n\n
              Check out youtube playlist CoronaSafe education compiled by Doctors and health workers: \n
              https://www.youtube.com/watch?v=HJzp5Q6nTco&list=PLf_Ch_O33Od60v1OVyhEu9O_1MhZMf9sI \n
              "
@@ -146,6 +173,39 @@ responses:
              Join our Slack channel: \n
              https://slack.coronasafe.in/
              "
+  utter_about_guides:
+    - text: "Learn about Covid 19 with guides in 7 Languages: \n
+            1. English: \n
+            https://coronasafe.in/
+            ------------------------------------------------\n
+            2.Malayalam:\n
+            https://ml.coronasafe.in/ \n
+            ------------------------------------------------\n
+            3.Hindi:\n
+            http://hindi.coronasafe.in/ \n
+            ------------------------------------------------\n
+            4.Kannada:\n
+            https://kannada.coronasafe.in/ \n
+            ------------------------------------------------\n
+            5.Telugu:\n
+            https://telugu.coronasafe.in/ \n
+            ------------------------------------------------\n
+            6.Tamil:\n
+            https://tamil.coronasafe.network/ \n
+            ------------------------------------------------\n
+            7.Marati:\n
+            https://marathi.coronasafe.network/
+            "
+  utter_about_share_bot:
+    - text: "I am available 24/7 on: \n
+            1.Telegram: \n
+            http://t.me/Coronasafe_kerala_bot \n
+            -----------------------------------------\n
+            2.Facebook Messenger: \n
+            https://www.messenger.com/t/coronasafeindia
+           --------------------------------------------\n
+           Share the links and let a friend talk to me :)
+            "
   utter_tools_coronasafe:
     - text: Here are few of CoronaSafe Network tools  #Making replies telegram specific for button_vertical
       channel: "telegram"
@@ -156,12 +216,6 @@ responses:
           payload: '/ask_about_care'
         - title: Logistics/Delivery Networks
           payload: '/ask_about_delivery_networks'
-        - title: Realtime Public dashboards
-          payload: '/ask_about_dashboards'
-        - title: Take a Quiz
-          payload: '/ask_take_quiz'
-        - title: Education and courses
-          payload: '/ask_about_Edu_Courses'
         - title: Contact us
           payload: 'ask_contact_us'
         - title: <- Back to main Menu
@@ -176,15 +230,6 @@ responses:
         - content_type: text
           title: Logistics Networks
           payload: '/ask_about_delivery_networks'
-        - content_type: text
-          title: Realtime dashboards
-          payload: '/ask_about_dashboards'
-        - content_type: text
-          title: Take a Quiz
-          payload: '/ask_take_quiz'
-        - content_type: text
-          title: Education & courses
-          payload: '/ask_about_Edu_Courses'
         - content_type: text
           title: Contact us
           payload: 'ask_contact_us'
@@ -247,7 +292,7 @@ responses:
           payload: '/inform_district{"district": "Kannur"}'
         - title: Kasaragod
           payload: '/inform_district{"district": "Kasaragod"}'
-    - text: Please enter district name.
+
 
   utter_welcome:
     - text: You are welcome. Don't forget to wear a mask, Wash your hands and practice social distancing. Let's fight this together "#CoronaSafe"! :)
@@ -271,6 +316,8 @@ actions:
   - utter_goodbye
   - utter_about_coronasafe
   - utter_about_kerala_community_response_network
+  - utter_about_guides
+  - utter_about_share_bot
   - utter_tools_coronasafe
   - utter_back_to_coronasafe_menu
   - utter_about_care

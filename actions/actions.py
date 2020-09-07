@@ -23,14 +23,32 @@ class ActionKeralaTotalCases(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         resp = requests.get("https://keralastats.coronasafe.live/summary.json")
-        result = resp.json()
-        message = "All Kerala Covid numbers as of " + str(result["last_updated"]) + "\n\n"
-        keys = ["Hospital Observation", "Home Observation", "Total Observation", "Hospital admitted today", "Confirmed",
-                "Recovered", "Deaths", "Active"]
+        result_summary = resp.json()
+        message = ""
+        keys = ["Confirmed", "Recovered", "Death", "Active"]
+        hospital = ["At Hospitals ", "At Home ", "Total Observation", "Hospital admitted today"]
         i = 0
-        for key in result["summary"].keys():
-            message += keys[i] + " : " + str(result["summary"][key]) + "\n"
+        message += "Covid cases Kerala \n(" + str(result_summary["last_updated"]) + ")\n"
+        message += "-" * 40 + "\n"
+        for key in ("confirmed", "recovered", "deceased"):
+            message += keys[i] + " : " + str(result_summary["delta"][key]) + "\n"
             i += 1
+        message += keys[i] + " : " + str(result_summary["summary"][
+                                             "active"]) + "\n"  # under summary, active cases are current active. delta digves diff between today & yesterday
+        i = 0
+        message += "\nUnder observation " + "\n" + "-" * 40 + "\n"
+
+        for key in ("hospital_obs", "home_obs", "total_obs", "hospital_today"):
+            message += hospital[i] + " : " + str(result_summary["summary"][key]) + "\n"
+            i += 1
+
+        i = 0
+        message += "\nTotal till " + str(result_summary["last_updated"]) + "\n" + "-" * 40 + "\n"
+
+        for key in ("confirmed", "recovered", "deceased", "active"):
+            message += keys[i] + " : " + str(result_summary["summary"][key]) + "\n"
+            i += 1
+
         dispatcher.utter_message(text=message)
         return []
 
@@ -46,14 +64,27 @@ class ActionDistrictWiseCases(Action):
         district = tracker.get_slot("district")
         resp = requests.get("https://keralastats.coronasafe.live/latest.json")
         result = resp.json()
-        keys = ["Hospital Observation", "Home Observation", "Total Observation", "Hospital admitted today", "Confirmed",
-                "Recovered", "Deaths", "Active"]
+        keys = ["Confirmed", "Recovered", "Deaths", "Active"]
+        hospital = ["Hospital Observation", "Home Observation", "Total Observation", "Hospital admitted today"]
         i = 0
-        message = "Covid numbers in " + district + " as of " + str(result["last_updated"]) + "\n\n"
-        for key in result["summary"][district].keys():
-            message += keys[i] + " : " + str(result["summary"][district][key]) + "\n"
+        message = "Covid cases in " + district + "\n( " + str(result["last_updated"]) + " )\n" + "-" * 49 + "\n"
+        for key in ("confirmed", "recovered", "deceased"):
+            message += keys[i] + " : " + str(result["delta"][district][key]) + "\n"
+            i += 1
+        message += keys[i] + " : " + str(result["summary"][district][
+                                             "active"]) + "\n"  # under summary, active cases are current active. delta digves diff between today & yesterday
+        i = 0
+        message += "\nUnder observation " + "\n" + "-" * 49 + "\n"
+
+        for key in ("hospital_obs", "home_obs", "total_obs", "hospital_today"):
+            message += hospital[i] + " : " + str(result["summary"][district][key]) + "\n"
             i += 1
 
+        message += "\nTotal till " + str(result["last_updated"]) + "\n" + "-" * 49 + "\n"
+        i = 0
+        for key in ("confirmed", "recovered", "deceased", "active"):
+            message += keys[i] + " : " + str(result["summary"][district][key]) + "\n"
+            i += 1
         dispatcher.utter_message(text=message)
 
         return []
@@ -100,9 +131,9 @@ class ActionButtonDispatch(Action):  # Since FB messenger only allows 3 buttons,
     def name(self) -> Text:
         return "action_district_select_button_dispatch"
 
-    async def run(self, dispatcher: CollectingDispatcher,
-                  tracker: Tracker,
-                  domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         districts = ['Thiruvananthapuram', 'Kollam', 'Alappuzha', 'Pathanamthitta', 'Kottayam', 'Idukki', 'Ernakulam',
                      'Thrissur', 'Palakkad', 'Malappuram', 'Kozhikode', 'Wayanad', 'Kannur', 'Kasaragod']
         input_channel = tracker.get_latest_input_channel()

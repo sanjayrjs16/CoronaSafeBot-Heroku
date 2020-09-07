@@ -1,0 +1,32 @@
+version: '3.0'
+
+services:
+  rasa_chatbot:
+    build: .
+    image: rasa-chatbot:latest
+    ports:
+      - 5005:5005
+    volumes:
+      - ./models:/app/models
+      - ./config:/app/config
+    command:
+      - rasa
+      - run
+      - --enable-api
+      - --model
+      - /app/models
+      - --endpoints
+      - /app/config/endpoints.local.yml
+
+  action_server:
+    build: actions
+    image: rasa-chatbot-actions:latest
+    volumes:
+      - ./actions:/app/actions
+    command:
+      - python3
+      - -m
+      - rasa_sdk
+      - --actions
+      - actions
+

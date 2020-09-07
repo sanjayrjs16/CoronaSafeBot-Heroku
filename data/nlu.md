@@ -126,7 +126,8 @@
    - reports kerala
    - numbers in kerala
    - reports today
-   - kerala reports today    - total
+   - kerala reports today    
+   - total
    - numbers in kerala
    - all kerala numbers
    - keralam 
@@ -134,6 +135,10 @@
    - kerala state total cases
    - kerala state reports
    - total today
+   - today's summary
+   - summary
+   - summary today
+   
 ## intent:ask_district_wise
    - district
    - district wise cases
@@ -176,6 +181,32 @@
 - [Kannur](district)
 - [Kasaragod](district)
 
+## intent:ask_about_guides
+  - tell me about guides
+  - guides
+  - covid information guide
+  - covid info
+  - language guide
+  - guide
+  - Malayalam
+  - Hindi
+  - English
+  - Telugu
+  - Telungu
+  - Kannada
+  - Marati
+  
+## intent:ask_about_share_bot
+   - share bot
+   - how can i share you
+   - share options
+   - show a friend
+   - send bot
+   - share with friend
+   - sharing
+   - share you
+    
+  
 ##intent:ask_return_main_menu
   - main menu
   - back to main menu

@@ -40,6 +40,16 @@
 * inform_district
     - action_hotspots_districtwise
     - utter_back_to_coronasafe_menu
+
+## ask about guides
+* ask_about_guides
+   - utter_about_guides
+   - utter_back_to_coronasafe_menu
+
+## ask about share bot
+* ask_about_share_bot
+   - utter_about_share_bot
+   - utter_back_to_coronasafe_menu  
     
     
 ##ask about kerala community response network
