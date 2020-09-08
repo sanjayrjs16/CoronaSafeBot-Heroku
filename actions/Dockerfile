@@ -1,7 +1,5 @@
 FROM rasa/rasa-sdk:1.9.0
 
-MAINTAINER Sanjay R
-
 
 # Use subdirectory as working directory
 WORKDIR /app
@@ -12,8 +10,8 @@ COPY requirements-actions.txt ./
 # Change back to root user to install dependencies
 USER root
 
-RUN apt-get update &&\
-    apt-get -y install gcc &&\
+RUN apt-get update rm-rf/var/lib/apt/lists/* &&\
+    apt-get -y install gcc --no-install-recommends &&\
     pip3 install -r requirements-actions.txt
 # Install extra requirements for actions code, if necessary (uncomment next line)
 
