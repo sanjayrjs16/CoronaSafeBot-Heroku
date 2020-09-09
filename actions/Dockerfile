@@ -1,4 +1,4 @@
-FROM rasa/rasa-sdk:1.9.0
+FROM rasa/rasa-sdk:latest
 
 
 # Use subdirectory as working directory

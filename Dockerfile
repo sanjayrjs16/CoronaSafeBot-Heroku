@@ -1,4 +1,4 @@
-FROM rasa/rasa:1.10.11-full
+FROM rasa/rasa:latest
 
 COPY . /app
 
@@ -14,7 +14,7 @@ COPY actions/requirements-actions.txt ./
 # Change back to root user to install dependencies
 USER root
 
-RUN apt-get updat rm -rf /var/lib/apt/lists/* &&\
+RUN apt-get update rm -rf /var/lib/apt/lists/* &&\
     apt-get -y install gcc --no-install-recommends &&\
     pip3 install -r requirements-actions.txt
 # Install extra requirements for actions code, if necessary (uncomment next line)
