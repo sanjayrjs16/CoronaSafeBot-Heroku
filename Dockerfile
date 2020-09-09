@@ -1,18 +1,10 @@
 FROM rasa/rasa:1.10.11-full
 
-WORKDIR /app
 COPY . /app
-COPY ./data /app/data
+
+WORKDIR /app
 
 RUN  rasa train
-
-ADD ./models /app/models/
-ADD ./config /app/config/
-ADD ./actions /app/actions/
-ADD ./scripts /app/scripts/
-ADD ./data /app/data/
-ADD ./domain.yml /app/
-ADD ./config.yml /app/
 
 WORKDIR /app
 
@@ -28,9 +20,6 @@ RUN apt-get updat rm -rf /var/lib/apt/lists/* &&\
 # Install extra requirements for actions code, if necessary (uncomment next line)
 
 WORKDIR /app
-
-# Copy actions folder to working directory
-COPY ./actions /app/actions
 
 # By best practices, don't run the code with root user
 

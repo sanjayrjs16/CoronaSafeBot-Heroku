@@ -17,11 +17,7 @@ RUN apt-get update rm-rf/var/lib/apt/lists/* &&\
 
 WORKDIR /app
 
-# Copy actions folder to working directory
-COPY ./ /app/actions
-
 # By best practices, don't run the code with root user
-
 
 ENTRYPOINT []
 
