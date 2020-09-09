@@ -1,3 +1,5 @@
 # Rasa Chatbot For CoronaSafe
 /models/*
 /tests/*
+/.idea/*
+/__pycache__/*

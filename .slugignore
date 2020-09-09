@@ -1,0 +1,7 @@
+*.psd
+*.pdf
+.git
+.cache
+/tests/*
+/.idea/*
+*.md
