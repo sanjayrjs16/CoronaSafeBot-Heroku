@@ -1,3 +1,7 @@
+## Start on session start
+* start
+  - action_session_start
+  
 ## happy path
 * greet
   - utter_greet

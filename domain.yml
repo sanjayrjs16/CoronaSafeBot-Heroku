@@ -24,6 +24,8 @@ intents:
   - ask_about_Edu_Courses
   - ask_contact_us
   - out_of_scope
+  - start:
+        triggers: action_session_start
 
 entities:
   - district
@@ -328,6 +330,7 @@ actions:
   - utter_about_contact_us
   - utter_district_select #Splitting districts as fb-messenger can only have 10 quick replies
   - utter_default
+  - action_session_start
   - action_district_select_button_dispatch
   - action_kerala_total_cases
   - action_district_wise_cases

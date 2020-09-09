@@ -126,7 +126,8 @@ class ActionHotspotsDistrictWise(Action):
         return []
 
 
-class ActionButtonDispatch(Action):  # Since FB messenger only allows 3 buttons, telegram uses utter_district_select and fb messenger spits out districs, 3 at a time.
+class ActionButtonDispatch(
+    Action):  # Since FB messenger only allows 3 buttons, telegram uses utter_district_select and fb messenger spits out districs, 3 at a time.
 
     def name(self) -> Text:
         return "action_district_select_button_dispatch"
@@ -161,4 +162,24 @@ class ActionButtonDispatch(Action):  # Since FB messenger only allows 3 buttons,
 
         else:
             dispatcher.utter_message(template="utter_district_select")
+        return []
+
+
+class ActionSessionStart(Action):
+    def name(self) -> Text:
+        return "action_session_start"
+
+    @staticmethod
+    def fetch_slots(tracker: Tracker) -> List[Dict[Text, Any]]:
+        """Collect slots that contain the user's name and phone number."""
+        return []
+
+    async def run(
+            self,
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(template="utter_greet")
+        dispatcher.utter_message(template="utter_bot_function")
         return []
