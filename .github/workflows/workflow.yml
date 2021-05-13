@@ -30,7 +30,7 @@ jobs:
         username: ${{secrets.SSH_USERNAME}}
         key: ${{secrets.SSH_KEY}}
         script: |
-              echo "SSH: Connected  succesfully!"
+              echo "SSH: Connected  succesfully!!"
 
     - name: Build and deploy docker image
       run: |
