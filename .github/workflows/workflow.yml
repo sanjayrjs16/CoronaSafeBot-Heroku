@@ -34,5 +34,5 @@ jobs:
 
     - name: Build and deploy docker image
       run: |
-        docker build -t coronasafe-bot
+        docker build -t coronasafe-bot .
         docker run -dp 3000:3000 coronasafe-bot
