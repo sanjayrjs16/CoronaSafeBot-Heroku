@@ -22,13 +22,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout files
       uses: actions/checkout@v2
-    - name: Build docker image and push to digital ocean
+
+    - name: Connect to digital ocean server with ssh
       uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{secrets.SSH_HOST}}
         username: ${{secrets.SSH_USERNAME}}
         key: ${{secrets.SSH_KEY}}
         script: |
-              docker build -t coronasafe-bot
-              docker run -dp 3000:3000 coronasafe-bot
-        echo: "Deployed succesfully "
+              echo "SSH: Connected  succesfully!"
+
+    - name: Build and deploy docker image
+      run: |
+        docker build -t coronasafe-bot
+        docker run -dp 3000:3000 coronasafe-bot
