@@ -29,5 +29,6 @@ jobs:
         username: ${{secrets.SSH_USERNAME}}
         key: ${{secrets.SSH_KEY}}
         script: |
-          docker build -t coronasafe-bot | docker run -dp 3000:3000 coronasafe-bot|
+              docker build -t coronasafe-bot
+              docker run -dp 3000:3000 coronasafe-bot
         echo: "Deployed succesfully "
