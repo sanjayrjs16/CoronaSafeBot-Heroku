@@ -20,8 +20,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Build and deploy docker timage to Digital Ocean
+    - name: Checkout files
       uses: actions/checkout@v2
+    - name: Build docker image and push to digital ocean
+      uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{secrets.SSH_HOST}}
         key: ${{secrets.SSH_KEY}}
