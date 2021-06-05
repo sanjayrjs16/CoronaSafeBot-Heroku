@@ -20,16 +20,16 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Checkout files
-      uses: actions/checkout@v2
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        repository: sanjayr16/coronasafebot
-        tag_with_ref: true
-        tag_with_sha: true
+#     - name: Checkout files
+#       uses: actions/checkout@v2
+#     - name: Build and push Docker images
+#       uses: docker/build-push-action@v1
+#       with:
+#         username: ${{ secrets.DOCKERHUB_USERNAME }}
+#         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+#         repository: sanjayr16/coronasafebot
+#         tag_with_ref: true
+#         tag_with_sha: true
     - name: Connect to digital ocean server with ssh
       uses: appleboy/ssh-action@v0.1.4
       with:
@@ -38,7 +38,7 @@ jobs:
         key: ${{secrets.SSH_KEY}}
         script: |
               echo "SSH: Connected  succesfully!"
-              docker run -e TOKEN_TG=${{secrets.TOKEN_TG}} -e VERIFY_TG=${{secrets.VERIFY_TG}} -e VERIFY_FB=${{secrets.VERIFY_FB}} -e WEBHOOK_URL_TG=${{secrets.WEBHOOK_URL_TG}} -e TOKEN_FB=${{secrets.TOKEN_FB}} -e SECRET_FB=${{secrets.SECRET_FB}} -p 3000 sanjayr16/coronasafebot
+#              docker run -e TOKEN_TG=${{secrets.TOKEN_TG}} -e VERIFY_TG=${{secrets.VERIFY_TG}} -e VERIFY_FB=${{secrets.VERIFY_FB}} -e WEBHOOK_URL_TG=${{secrets.WEBHOOK_URL_TG}} -e TOKEN_FB=${{secrets.TOKEN_FB}} -e SECRET_FB=${{secrets.SECRET_FB}} -p 3000 sanjayr16/coronasafebot
 
 #     - name: Build and deploy docker image
 #       run: docker run -e TOKEN_TG=${{secrets.TOKEN_TG}} -e VERIFY_TG=${{secrets.VERIFY_TG}} -e VERIFY_FB=${{secrets.VERIFY_FB}} -e WEBHOOK_URL_TG=${{secrets.WEBHOOK_URL_TG}} -e TOKEN_FB=${{secrets.TOKEN_FB}} -e SECRET_FB=${{secrets.SECRET_FB}} -p 3000 sanjayr16/coronasafebot:dev
