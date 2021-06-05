@@ -40,7 +40,7 @@ jobs:
               echo "SSH: Connected  succesfully!"
 
     - name: Build and deploy docker image
-      run: docker run -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/coronasafe-bot
+      run: docker run -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/coronasafebot
 #   deploy:
 #     needs: build
     
