@@ -22,7 +22,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout files
       uses: actions/checkout@v2
-
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: sanjayrjs16/CoronaSafeBot-Heroku
+        tag_with_ref: true
+        tag_with_sha: true
     - name: Connect to digital ocean server with ssh
       uses: appleboy/ssh-action@v0.1.4
       with:
@@ -35,4 +42,6 @@ jobs:
     - name: Build and deploy docker image
       run: |
         docker build -t coronasafe-bot .
-        docker run -dp 3000:3000 coronasafe-bot
+        docker tag coronasafe-bot ${{ secrets.DOCKERHUB_USERNAME }}/coronasafe-bot
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/coronasafe-bot
+        docker run -p 3000:3000 coronasafe-bot
