@@ -39,30 +39,26 @@ jobs:
         script: |
               echo "SSH: Connected  succesfully!"
 
-#     - name: Build and deploy docker image
-#       run: |
-#         docker build -t coronasafe-bot .
-#         docker tag coronasafe-bot ${{ secrets.DOCKERHUB_USERNAME }}/coronasafe-bot
-#         docker push ${{ secrets.DOCKERHUB_USERNAME }}/coronasafe-bot
-#         docker run -p 3000:3000 coronasafe-bot
-  deploy:
-    needs: build
+    - name: Build and deploy docker image
+      run: docker run -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/coronasafe-bot
+#   deploy:
+#     needs: build
     
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
     
-    steps:
-      - name: Checkout files    
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout files    
+#         uses: actions/checkout@v2
         
-      - name: Get tag name
-        uses: olegtarasov/get-tag@v2
+#       - name: Get tag name
+#         uses: olegtarasov/get-tag@v2
         
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+#       - name: Install doctl
+#         uses: digitalocean/action-doctl@v2
+#         with:
+#          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
          
-      - name: Provision Droplet and deploy container
-        run: doctl compute droplet create "CoronaSafeNetwork-Chatbot" --image docker-20-04 --size s-1vcpu-1gb --region blr1 --user-data-file deploy.sh --wait
+#       - name: Provision Droplet and deploy container
+#         run: doctl compute droplet create "CoronaSafeNetwork-Chatbot" --image docker-20-04 --size s-1vcpu-1gb --region blr1 --user-data-file deploy.sh --wait
 
 
