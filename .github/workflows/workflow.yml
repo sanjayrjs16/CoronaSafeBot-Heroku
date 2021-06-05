@@ -38,6 +38,7 @@ jobs:
         key: ${{secrets.SSH_KEY}}
         script: |
               echo "SSH: Connected  succesfully!"
+
 #              docker run -e TOKEN_TG=${{secrets.TOKEN_TG}} -e VERIFY_TG=${{secrets.VERIFY_TG}} -e VERIFY_FB=${{secrets.VERIFY_FB}} -e WEBHOOK_URL_TG=${{secrets.WEBHOOK_URL_TG}} -e TOKEN_FB=${{secrets.TOKEN_FB}} -e SECRET_FB=${{secrets.SECRET_FB}} -p 3000 sanjayr16/coronasafebot
 
 #     - name: Build and deploy docker image
