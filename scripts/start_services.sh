@@ -9,5 +9,4 @@ rasa run actions --actions actions&
 # Start rasa server with nlu model
 rasa run --model /app/models --enable-api \
         --endpoints /app/config/endpoints.yml \
-        --credentials /app/config/credentials.yml \
-        -p $PORT
+        --credentials /app/config/credentials.yml
